@@ -5,66 +5,358 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>行业看板 · Industry Dashboard</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#0f172a;color:#f1f5f9;min-height:100vh}
-.hdr{padding:40px 48px 32px;border-bottom:1px solid #1e293b}
-.hdr-title{font-size:28px;font-weight:800;letter-spacing:-.5px}
-.hdr-title span{color:#ea580c}
-.hdr-sub{font-size:13px;color:#64748b;margin-top:6px}
-.wrap{max-width:1100px;margin:0 auto;padding:40px 48px}
-.section-label{font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:40px}
-.card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s;display:block}
-.card:hover{border-color:#ea580c;transform:translateY(-2px)}
-.card-icon{font-size:24px;margin-bottom:12px}
-.card-title{font-size:16px;font-weight:700;margin-bottom:6px}
-.card-sub{font-size:12px;color:#64748b;line-height:1.6}
-.tag{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;margin-top:10px;margin-right:4px}
-.tag-up{background:#dcfce7;color:#15803d}
-.tag-new{background:#fff7ed;color:#c2410c}
-.footer{padding:24px 48px;border-top:1px solid #1e293b;font-size:11px;color:#334155}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f9fafb;
+  color: #111827;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── Header ── */
+.hdr {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.hdr-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hdr-dot {
+  width: 28px; height: 28px;
+  background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.hdr-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -.2px;
+}
+.hdr-name span { color: #d97706; }
+.hdr-meta {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* ── Hero ── */
+.hero {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 52px 48px 44px;
+}
+.hero-inner { max-width: 1080px; margin: 0 auto; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #fde68a;
+  margin-bottom: 18px;
+}
+.hero-title {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -.8px;
+  color: #111827;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.hero-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, #d97706, #ea580c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: 15px;
+  color: #6b7280;
+  max-width: 560px;
+  line-height: 1.7;
+}
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 28px;
+}
+.stat-item { }
+.stat-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+}
+.stat-lbl {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 1px;
+}
+
+/* ── Main content ── */
+.wrap { max-width: 1080px; margin: 0 auto; padding: 40px 48px 60px; }
+
+.section-hdr {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.section-hdr-line {
+  width: 3px;
+  height: 16px;
+  border-radius: 2px;
+  background: #d97706;
+}
+.section-hdr-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+/* ── Dashboard cards ── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 24px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: box-shadow .15s, border-color .15s, transform .15s;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  position: relative;
+  overflow: hidden;
+}
+.card:hover {
+  border-color: #d97706;
+  box-shadow: 0 4px 16px rgba(217,119,6,.12);
+  transform: translateY(-2px);
+}
+.card-accent {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+}
+.card-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #111827;
+}
+.card-updated {
+  font-size: 10px;
+  color: #9ca3af;
+  white-space: nowrap;
+  margin-top: 3px;
+}
+.card-desc {
+  font-size: 12.5px;
+  color: #6b7280;
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 20px;
+}
+.tag-green  { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+.tag-orange { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+.tag-blue   { background: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.tag-gray   { background: #f3f4f6; color: #6b7280; border: 1px solid #e5e7eb; }
+
+/* Coming soon card */
+.card-soon {
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 14px;
+  padding: 24px;
+  display: block;
+  opacity: .6;
+}
+.card-soon-title { font-size: 16px; font-weight: 600; color: #6b7280; margin-bottom: 6px; }
+.card-soon-desc { font-size: 12px; color: #9ca3af; }
+
+/* ── Footer ── */
+.footer {
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-left { font-size: 11px; color: #9ca3af; }
+.footer-right { font-size: 11px; color: #d1d5db; }
+
+@media (max-width: 640px) {
+  .hdr, .hero, .footer { padding-left: 20px; padding-right: 20px; }
+  .wrap { padding: 28px 20px 48px; }
+  .hero-title { font-size: 26px; }
+  .hero-stats { flex-wrap: wrap; gap: 20px; }
+}
 </style>
 </head>
 <body>
-<div class="hdr">
-  <div style="max-width:1100px;margin:0 auto">
-    <div class="hdr-title">Industry <span>Dashboard</span></div>
-    <div class="hdr-sub">TMT 产业链行业看板 · 数据截至 2026Q1</div>
+
+<!-- Header -->
+<header class="hdr">
+  <div class="hdr-logo">
+    <div class="hdr-dot">📊</div>
+    <div class="hdr-name">Industry <span>Dashboard</span></div>
+  </div>
+  <div class="hdr-meta">TMT 产业链 · 数据截至 2026Q1</div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">📡 实时更新中</div>
+    <div class="hero-title">TMT 产业链<br><em>行业看板</em></div>
+    <div class="hero-sub">
+      覆盖国产AI算力、PCB产业链、国产半导体等核心赛道，
+      提供产业链结构、竞争格局、标的映射与催化剂跟踪。
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-lbl">已发布看板</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2026Q1</div>
+        <div class="stat-lbl">最新数据截止</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-lbl">覆盖A股标的</div>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Main -->
 <div class="wrap">
-  <div class="section-label">AI 算力产业链</div>
-  <div class="cards">
-    <a class="card" href="ai-compute/index.html">
-      <div class="card-icon">🖥️</div>
-      <div class="card-title">国产AI算力</div>
-      <div class="card-sub">AI芯片 · 先进封装 · HBM · 超节点（Scale-up/Scale-out）<br>晶圆制造产能分析 · 各家GPU出货预期 · 标的映射</div>
-      <span class="tag tag-up">🟢 替代加速</span>
-      <span class="tag tag-new">最新</span>
-    </a>
+
+  <!-- 已发布 -->
+  <div class="section-hdr">
+    <div class="section-hdr-line"></div>
+    <div class="section-hdr-text">已发布</div>
   </div>
 
-  <div class="section-label" style="margin-top:24px">即将发布</div>
   <div class="cards">
-    <div class="card" style="opacity:.45;cursor:default">
-      <div class="card-icon">🔩</div>
-      <div class="card-title">国产半导体</div>
-      <div class="card-sub">半导体设备 · 材料 · 芯片设计 · 晶圆代工</div>
+
+    <!-- 国产AI算力 -->
+    <a class="card" href="ai-compute/index.html">
+      <div class="card-accent" style="background:linear-gradient(90deg,#7c3aed,#0891b2)"></div>
+      <div class="card-icon" style="background:#f5f3ff;">🖥️</div>
+      <div class="card-top">
+        <div class="card-title">国产AI算力</div>
+        <div class="card-updated">2026-05</div>
+      </div>
+      <div class="card-desc">
+        AI芯片 · 先进封装 · HBM · 超节点<br>
+        晶圆制造产能 · GPU出货预期 · Wafer经济模型 · 股价行情分析
+      </div>
+      <div class="tags">
+        <span class="tag tag-green">🟢 替代加速</span>
+        <span class="tag tag-blue">DeepSeek效应</span>
+        <span class="tag tag-orange">出口管制催化</span>
+      </div>
+    </a>
+
+    <!-- PCB -->
+    <a class="card" href="pcb/index.html">
+      <div class="card-accent" style="background:linear-gradient(90deg,#ea580c,#d97706)"></div>
+      <div class="card-icon" style="background:#fff7ed;">🔌</div>
+      <div class="card-top">
+        <div class="card-title">PCB 产业链</div>
+        <div class="card-updated">2026-05</div>
+      </div>
+      <div class="card-desc">
+        AI PCB · CCL覆铜板 · 电子布 · 铜箔 · 钻针<br>
+        M6→PTFE 材料代际时间轴 · 供需价格图表 · 竞争格局
+      </div>
+      <div class="tags">
+        <span class="tag tag-green">🟢 材料涨价</span>
+        <span class="tag tag-orange">M8/M9 导入</span>
+        <span class="tag tag-blue">AI 服务器拉动</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- 即将发布 -->
+  <div class="section-hdr" style="margin-top:8px">
+    <div class="section-hdr-line" style="background:#d1d5db"></div>
+    <div class="section-hdr-text" style="color:#9ca3af">即将发布</div>
+  </div>
+
+  <div class="cards">
+    <div class="card-soon">
+      <div style="font-size:20px;margin-bottom:8px">🔩</div>
+      <div class="card-soon-title">国产半导体</div>
+      <div class="card-soon-desc">设备 · 材料 · 芯片设计 · 晶圆代工</div>
     </div>
-    <div class="card" style="opacity:.45;cursor:default">
-      <div class="card-icon">🌐</div>
-      <div class="card-title">光通信</div>
-      <div class="card-sub">光模块 · 光器件 · 数据中心互联</div>
+    <div class="card-soon">
+      <div style="font-size:20px;margin-bottom:8px">🌐</div>
+      <div class="card-soon-title">光通信</div>
+      <div class="card-soon-desc">光模块 · 光器件 · 数据中心互联</div>
     </div>
-    <div class="card" style="opacity:.45;cursor:default">
-      <div class="card-icon">🖨️</div>
-      <div class="card-title">PCB产业链</div>
-      <div class="card-sub">AI PCB · CCL · 电子布 · 铜箔 · 钻针</div>
+    <div class="card-soon">
+      <div style="font-size:20px;margin-bottom:8px">📡</div>
+      <div class="card-soon-title">超节点专题</div>
+      <div class="card-soon-desc">Scale-up/Scale-out · 交换网络 · 盛科通信</div>
     </div>
   </div>
+
 </div>
-<div class="footer">
-  <div style="max-width:1100px;margin:0 auto">TMT 产业链研究 · 数据来源：公司公告 / 券商研报 / 专家访谈</div>
-</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-left">TMT 产业链研究 · 数据来源：公司公告 / 券商研报 / 专家访谈</div>
+  <div class="footer-right">github.com/Bulu429/Industry_Dashboard</div>
+</footer>
+
 </body>
 </html>
