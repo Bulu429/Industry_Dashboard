@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>行业看板 · Industry Dashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#0f172a;color:#f1f5f9;min-height:100vh}
+.hdr{padding:40px 48px 32px;border-bottom:1px solid #1e293b}
+.hdr-title{font-size:28px;font-weight:800;letter-spacing:-.5px}
+.hdr-title span{color:#ea580c}
+.hdr-sub{font-size:13px;color:#64748b;margin-top:6px}
+.wrap{max-width:1100px;margin:0 auto;padding:40px 48px}
+.section-label{font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:40px}
+.card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s;display:block}
+.card:hover{border-color:#ea580c;transform:translateY(-2px)}
+.card-icon{font-size:24px;margin-bottom:12px}
+.card-title{font-size:16px;font-weight:700;margin-bottom:6px}
+.card-sub{font-size:12px;color:#64748b;line-height:1.6}
+.tag{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;margin-top:10px;margin-right:4px}
+.tag-up{background:#dcfce7;color:#15803d}
+.tag-new{background:#fff7ed;color:#c2410c}
+.footer{padding:24px 48px;border-top:1px solid #1e293b;font-size:11px;color:#334155}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="hdr-title">Industry <span>Dashboard</span></div>
+    <div class="hdr-sub">TMT 产业链行业看板 · 数据截至 2026Q1</div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="section-label">AI 算力产业链</div>
+  <div class="cards">
+    <a class="card" href="ai-compute/index.html">
+      <div class="card-icon">🖥️</div>
+      <div class="card-title">国产AI算力</div>
+      <div class="card-sub">AI芯片 · 先进封装 · HBM · 超节点（Scale-up/Scale-out）<br>晶圆制造产能分析 · 各家GPU出货预期 · 标的映射</div>
+      <span class="tag tag-up">🟢 替代加速</span>
+      <span class="tag tag-new">最新</span>
+    </a>
+  </div>
+
+  <div class="section-label" style="margin-top:24px">即将发布</div>
+  <div class="cards">
+    <div class="card" style="opacity:.45;cursor:default">
+      <div class="card-icon">🔩</div>
+      <div class="card-title">国产半导体</div>
+      <div class="card-sub">半导体设备 · 材料 · 芯片设计 · 晶圆代工</div>
+    </div>
+    <div class="card" style="opacity:.45;cursor:default">
+      <div class="card-icon">🌐</div>
+      <div class="card-title">光通信</div>
+      <div class="card-sub">光模块 · 光器件 · 数据中心互联</div>
+    </div>
+    <div class="card" style="opacity:.45;cursor:default">
+      <div class="card-icon">🖨️</div>
+      <div class="card-title">PCB产业链</div>
+      <div class="card-sub">AI PCB · CCL · 电子布 · 铜箔 · 钻针</div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div style="max-width:1100px;margin:0 auto">TMT 产业链研究 · 数据来源：公司公告 / 券商研报 / 专家访谈</div>
+</div>
+</body>
+</html>
