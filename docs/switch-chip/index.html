@@ -187,6 +187,10 @@ a:hover{text-decoration:underline}
 .scn-btn:hover{border-color:#16a34a;color:#16a34a}
 .scn-btn.scn-active{background:#16a34a;color:#fff;border-color:#16a34a}
 
+/* 返回首页按钮 */
+.hdr-back{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border:1px solid var(--accent2);border-radius:8px;background:var(--accent-bg);color:var(--accent);font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;transition:all .15s}
+.hdr-back:hover{background:var(--accent);color:#fff;text-decoration:none}
+
 /* Footer */
 .foot{text-align:center;font-size:11px;color:var(--text2);padding:14px;margin-top:20px}
 </style>
@@ -195,6 +199,7 @@ a:hover{text-decoration:underline}
 
 <header class="hdr">
   <div class="hdr-l">
+    <a class="hdr-back" href="../index.html">← 返回首页</a>
     <div>
       <div class="hdr-title">🔀 交换芯片</div>
       <div class="hdr-sub">Switch ASIC · 全球口径 · 数据中心/AI · 园区企业 · 光电协同</div>
